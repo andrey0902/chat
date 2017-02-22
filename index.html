@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat</title>
+
+
+  <link href="css/style.css" rel="stylesheet">
+
+
+</head>
+<body ng-cloak="" ng-controller="mainCtrl as main">
+  <section id="container">
+    <div class="yourNic">
+      <label for="nic">Enter your nic</label> <input type="text" placeholder="Your nic" id="nic" maxlength="15" minlength="3" ng-model="main.nic">
+    </div>
+    <section class="main-bloc">
+      <div ng-repeat="item in main.sms">
+        <p><span>{{item.nicName}}</span>
+          {{item.text}}
+        <hr>
+        </p>
+      </div>
+    </section>
+    <section>
+      <form name="sendMessage" novalidate ng-submit="main.sendMessage(main.text, sendMessage.$valid)">
+        <textarea name="sms" ng-blur="main.valid(sendMessage.$valid)" id="sms" placeholder="Enter your sms" ng-model="main.text" required maxlength="200" minlength="3" cols="30" rows="5">
+        </textarea>
+        <button type="submit"  ng-disabled="sendMessage.$invalid">Send</button>
+      </form>
+    </section>
+  </section>
+
+
+
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+  <script src="js/app/app.js"></script>
+  <script src="js/fectori/message.js"></script>
+  <script src="js/controllers/main.js"></script>
+
+</body>
+</html>
